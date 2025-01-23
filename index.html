@@ -212,195 +212,132 @@
         </div>
 
         <!-- Entry template starts from here. -->
-        <div class="entry">
-          <div class="row">
-            <!-- Column 1: Meeting Dates -->
-            <div class="col-md-2">
-              <div class="meeting-card">
-                <h4>Meet 2</h4>
-                <em>Wednesday<br />2025 Jan 22</em>
+        <script>
+          const meetings = [
+            {
+              title: "Meet 2",
+              date: "2025 Jan 22 - Wednesday",
+              files: ["N/A"],
+              resources: [
+                {
+                  type: "Meeting",
+                  link: "https://www.youtube.com/watch?v=-QE9RCIdncw",
+                },
+              ],
+              other: ["N/A"],
+              agenda: [
+                "The meeting focused on discussing project delivery details, including timelines, deliverables, and specific requirements.",
+                "Tech Stack: Node.js, Express.js for backend; React, Vite for frontend.",
+                "Communication and tools: Discord, GitHub, Trello, Postman, Figma, Notion.",
+                "The meeting focused on discussing project delivery details, including timelines, deliverables, and specific requirements.",
+              ],
+              notes: [
+                "Focused on project delivery details, tech stack, and communication tools.",
+                "Clarified deliverables and created groups on Discord and GitHub.",
+                "Participated in client onboarding and exchanged project info.",
+              ],
+            },
+            {
+              title: "Meet 1",
+              date: "2025 Jan 21 - Tuesday",
+              files: ["N/A"],
+              resources: ["N/A"],
+              other: ["N/A"],
+              agenda: [
+                "Assigned roles to group members.",
+                "Sujan Rokad: Developer",
+                "Jay Patel: Developer",
+                "Archit Archit: Youtube and media handler & Leader and Communicates with the client.",
+                "Contacted client for project details.",
+              ],
+              notes: ["No notes available."],
+            },
+          ];
+
+          // Function to generate meeting entry HTML
+          function generateMeetingHTML(meeting) {
+            return `
+      <div class="entry">
+        <div class="row">
+          <div class="col-md-2">
+            <div class="meeting-card">
+              <h4>${meeting.title}</h4>
+              <em>${meeting.date}</em>
+            </div>
+          </div>
+          <div class="col-md-10">
+            <div class="row mb-3">
+              <div class="col-md-4">
+                <div class="card">
+                  <div class="card-body">
+                    <h4>Files</h4>
+                    <ul>${meeting.files
+                      .map((file) => `<li>${file}</li>`)
+                      .join("")}</ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card">
+                  <div class="card-body">
+                    <h4>Resources</h4>
+                    <ul>
+                      ${meeting.resources
+                        .map((resource) => {
+                          if (typeof resource === "object") {
+                            return `<li><a href="${resource.link}">${resource.type}</a></li>`;
+                          }
+                          return `<li>${resource}</li>`;
+                        })
+                        .join("")}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card">
+                  <div class="card-body">
+                    <h4>Other</h4>
+                    <ul>${meeting.other
+                      .map((other) => `<li>${other}</li>`)
+                      .join("")}</ul>
+                  </div>
+                </div>
               </div>
             </div>
-
-            <!-- Column 2: Cards -->
-            <div class="col-md-10">
-              <!-- First Row: Files, Other, Resources -->
-              <div class="row mb-3">
-                <div class="col-md-4">
-                  <div class="card">
-                    <div class="card-body">
-                      <h4>Files</h4>
-                      <ul>
-                        <li>N/A</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="card">
-                    <div class="card-body">
-                      <h4>Resources</h4>
-                      <ul>
-                        <li>
-                          <a href="https://www.youtube.com/watch?v=-QE9RCIdncw"
-                            >Meeting</a
-                          >
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="card">
-                    <div class="card-body">
-                      <h4>Other</h4>
-                      <ul>
-                        <li>N/A</li>
-                      </ul>
-                    </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="card">
+                  <div class="card-body">
+                    <h4>Agenda</h4>
+                    <ul>${meeting.agenda
+                      .map((item) => `<li>${item}</li>`)
+                      .join("")}</ul>
                   </div>
                 </div>
               </div>
-
-              <!-- Second Row: Agenda and Notes -->
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="card">
-                    <div class="card-body">
-                      <h4>Agenda</h4>
-                      <p>
-                        The meeting focused on discussing project delivery
-                        details, including timelines, deliverables, and specific
-                        requirements.
-                      </p>
-                      <ul>
-                        <li>
-                          Tech Stack: Node.js, Express.js for backend; React,
-                          Vite for frontend.
-                        </li>
-                        <li>
-                          Communication tools: Discord, GitHub, Trello, Postman,
-                          Figma, Notion.
-                        </li>
-                        <li>
-                          Assigned tasks for backend development and frontend
-                          implementation.
-                        </li>
-                      </ul>
-                      <p>
-                        Client requested backend handling, and the team agreed.
-                        Deliverables and groups on Discord and GitHub were
-                        created.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="card">
-                    <div class="card-body">
-                      <h4>Notes</h4>
-                      <ul>
-                        <li>
-                          Focused on project delivery details, tech stack, and
-                          communication tools.
-                        </li>
-                        <li>
-                          Clarified deliverables and created groups on Discord
-                          and GitHub.
-                        </li>
-                        <li>
-                          Participated in client onboarding and exchanged
-                          project info.
-                        </li>
-                      </ul>
-                    </div>
+              <div class="col-md-6">
+                <div class="card">
+                  <div class="card-body">
+                    <h4>Notes</h4>
+                    <ul>${meeting.notes
+                      .map((note) => `<li>${note}</li>`)
+                      .join("")}</ul>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
+    `;
+          }
 
-        <!-- Entry template ends here. -->
+          // Insert the generated HTML into the page
+          const meetingsHTML = meetings.map(generateMeetingHTML).join("");
+          document.querySelector(".main-content").innerHTML += meetingsHTML;
+        </script>
 
-        <!-- Entry template starts from here. -->
-        <div class="entry">
-          <div class="row">
-            <!-- Column 1: Meeting Dates -->
-            <div class="col-md-2">
-              <div class="meeting-card">
-                <h4>Meet 1</h4>
-                <em>Tuesday<br />2025 Jan 21</em>
-              </div>
-            </div>
-
-            <!-- Column 2: Cards -->
-            <div class="col-md-10">
-              <!-- First Row: Files, Other, Resources -->
-              <div class="row mb-3">
-                <div class="col-md-4">
-                  <div class="card">
-                    <div class="card-body">
-                      <h4>Files</h4>
-                      <ul>
-                        <li><a href="#">N/A</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="card">
-                    <div class="card-body">
-                      <h4>Resources</h4>
-                      <ul>
-                        <li><a href="#">N/A</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="card">
-                    <div class="card-body">
-                      <h4>Other</h4>
-                      <ul>
-                        <li><a href="#">N/A</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Second Row: Agenda and Notes -->
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="card">
-                    <div class="card-body">
-                      <h4>Agenda</h4>
-                      <p>Assigned roles to group members.</p>
-                      <ul>
-                        <li>Sujan Rokad: Frontend developer</li>
-                        <li>Jay Patel: Frontend developer</li>
-                        <li>
-                          Archit Archit: Youtube and media handler & Leader and
-                          Communicates with the client.
-                        </li>
-                      </ul>
-                      <p>Contacted client for project details.</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="card">
-                    <div class="card-body">
-                      <h4>Notes</h4>
-                      <p>No notes available.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
         <!-- Entry template ends here. -->
       </div>
     </div>
